@@ -379,7 +379,7 @@
 
                 <!-- PROJECT 1: Huyhoangjsc Enterprise Platform -->
                 <article class="project-item p-6 sm:p-8 rounded-xl glass-panel group" data-type="backend">
-                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                    <div class="flex flex-col lg:flex-row lg:items-stretch justify-between gap-6">
                         <div class="space-y-4 max-w-2xl">
                             <div class="flex items-center gap-3">
                                 <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20" data-i18n="p1.badge">Production Enterprise</span>
@@ -424,37 +424,47 @@
                             </div>
                         </div>
 
-                        <!-- Sidebar Action / Mini Architecture Diagram -->
-                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
-                            <div class="font-mono text-xs space-y-3">
-                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DUAL-ENGINE FLOW</div>
-                                <div class="text-[11px] text-neutral-400 space-y-1">
-                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">React Client</div>
-                                    <div class="text-center text-neutral-600">↓ REST / WebSocket</div>
-                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">NestJS Gateway</div>
-                                    <div class="grid grid-cols-2 gap-1 text-[10px] text-center pt-1">
-                                        <div class="p-1 rounded bg-surface border border-surfaceBorder">
-                                            <div class="text-white font-semibold">HRM Module</div>
-                                            <div class="text-neutral-400">BullMQ + PG</div>
-                                        </div>
-                                        <div class="p-1 rounded bg-surface border border-surfaceBorder">
-                                            <div class="text-white font-semibold">Chat Module</div>
-                                            <div class="text-neutral-400">Real-time + Mongo</div>
+                        <!-- Sidebar Action & Brand Logo -->
+                        <div class="lg:w-64 w-full flex-shrink-0 flex flex-col justify-between gap-4">
+                            <!-- Dual-Engine Flow Diagram -->
+                            <div class="bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                                <div class="font-mono text-xs space-y-3">
+                                    <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DUAL-ENGINE FLOW</div>
+                                    <div class="text-[11px] text-neutral-400 space-y-1">
+                                        <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">React Client</div>
+                                        <div class="text-center text-neutral-600">↓ REST / WebSocket</div>
+                                        <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">NestJS Gateway</div>
+                                        <div class="grid grid-cols-2 gap-1 text-[10px] text-center pt-1">
+                                            <div class="p-1 rounded bg-surface border border-surfaceBorder">
+                                                <div class="text-white font-semibold">HRM Module</div>
+                                                <div class="text-neutral-400">BullMQ + PG</div>
+                                            </div>
+                                            <div class="p-1 rounded bg-surface border border-surfaceBorder">
+                                                <div class="text-white font-semibold">Chat Module</div>
+                                                <div class="text-neutral-400">Real-time + Mongo</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <button onclick="openModal('project1')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                    <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                </button>
                             </div>
-                            <button onclick="openModal('project1')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
-                                <span data-i18n="p.inspect_btn">Inspect Details</span>
-                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
-                            </button>
+
+                            <!-- Project Brand Logo (Bottom Right) -->
+                            <div class="flex items-center justify-end self-end pt-2">
+                                <div class="px-3.5 py-1.5 rounded-xl bg-white/[0.92] border border-white/30 backdrop-blur-md flex items-center shadow-md hover:bg-white transition-all group/logo">
+                                    <img src="assets/logo-huyhoang.png" alt="Huy Hoang JSC" class="h-8 w-auto max-w-[130px] object-contain transition-transform duration-300 group-hover/logo:scale-105">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>
 
                 <!-- PROJECT 2: MoneyMate (Bank Notification Tracker) -->
                 <article class="project-item p-6 sm:p-8 rounded-xl glass-panel group" data-type="fullstack">
-                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                    <div class="flex flex-col lg:flex-row lg:items-stretch justify-between gap-6">
                         <div class="space-y-4 max-w-2xl">
                             <div class="flex items-center gap-3">
                                 <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20" data-i18n="p2.badge">Personal Fintech System</span>
@@ -495,29 +505,40 @@
                             </div>
                         </div>
 
-                        <!-- Sidebar Action -->
-                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
-                            <div class="font-mono text-xs space-y-3">
-                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DATA PIPELINE</div>
-                                <div class="text-[11px] text-neutral-400 space-y-1">
-                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Bank Push Notification</div>
-                                    <div class="text-center text-neutral-600">↓ Android Service (Regex)</div>
-                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Spring Boot API</div>
-                                    <div class="text-center text-neutral-600">↓ Ledger Store</div>
-                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">PostgreSQL + React UI</div>
+                        <!-- Sidebar Action & Brand Logo -->
+                        <div class="lg:w-64 w-full flex-shrink-0 flex flex-col justify-between gap-4">
+                            <!-- Data Pipeline Box -->
+                            <div class="bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                                <div class="font-mono text-xs space-y-3">
+                                    <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DATA PIPELINE</div>
+                                    <div class="text-[11px] text-neutral-400 space-y-1">
+                                        <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Bank Push Notification</div>
+                                        <div class="text-center text-neutral-600">↓ Android Service (Regex)</div>
+                                        <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Spring Boot API</div>
+                                        <div class="text-center text-neutral-600">↓ Ledger Store</div>
+                                        <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">PostgreSQL + React UI</div>
+                                    </div>
+                                </div>
+                                <button onclick="openModal('project2')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                    <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <!-- Project Brand Logo (Bottom Right) -->
+                            <div class="flex items-center justify-end self-end pt-2">
+                                <div class="px-3.5 py-2 rounded-xl bg-surface/80 border border-surfaceBorder/80 backdrop-blur-md flex items-center gap-2.5 shadow-sm hover:border-neutral-500 transition-all group/logo">
+                                    <img src="assets/logo-moneymate.png" alt="MoneyMate" class="h-7 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-110">
+                                    <span class="text-xs font-bold font-mono text-white tracking-wider">MoneyMate</span>
                                 </div>
                             </div>
-                            <button onclick="openModal('project2')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
-                                <span data-i18n="p.inspect_btn">Inspect Details</span>
-                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
-                            </button>
                         </div>
                     </div>
                 </article>
 
                 <!-- PROJECT 3: Viphenix Corporate Website -->
                 <article class="project-item p-6 sm:p-8 rounded-xl glass-panel group" data-type="fullstack">
-                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                    <div class="flex flex-col lg:flex-row lg:items-stretch justify-between gap-6">
                         <div class="space-y-4 max-w-2xl">
                             <div class="flex items-center gap-3">
                                 <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20" data-i18n="p3.badge">Client Delivery</span>
@@ -559,21 +580,31 @@
                             </div>
                         </div>
 
-                        <!-- Sidebar Action -->
-                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
-                            <div class="font-mono text-xs space-y-3">
-                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2" data-i18n="p3.metrics_title">PERFORMANCE METRICS</div>
-                                <div class="text-[11px] text-neutral-400 space-y-2">
-                                    <div class="flex justify-between"><span data-i18n="p3.m_arch">Architecture:</span> <span class="text-white">Static / Astro</span></div>
-                                    <div class="flex justify-between"><span data-i18n="p3.m_score">PageSpeed Score:</span> <span class="text-emerald-400 font-semibold">98 / 100</span></div>
-                                    <div class="flex justify-between"><span data-i18n="p3.m_edge">CDN Edge:</span> <span class="text-white">Netlify Global</span></div>
-                                    <div class="flex justify-between"><span data-i18n="p3.m_seo">SEO Engine:</span> <span class="text-white">Structured JSON-LD</span></div>
+                        <!-- Sidebar Action & Brand Logo -->
+                        <div class="lg:w-64 w-full flex-shrink-0 flex flex-col justify-between gap-4">
+                            <!-- Performance Metrics Box -->
+                            <div class="bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                                <div class="font-mono text-xs space-y-3">
+                                    <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2" data-i18n="p3.metrics_title">PERFORMANCE METRICS</div>
+                                    <div class="text-[11px] text-neutral-400 space-y-2">
+                                        <div class="flex justify-between"><span data-i18n="p3.m_arch">Architecture:</span> <span class="text-white">Static / Astro</span></div>
+                                        <div class="flex justify-between"><span data-i18n="p3.m_score">PageSpeed Score:</span> <span class="text-emerald-400 font-semibold">98 / 100</span></div>
+                                        <div class="flex justify-between"><span data-i18n="p3.m_edge">CDN Edge:</span> <span class="text-white">Netlify Global</span></div>
+                                        <div class="flex justify-between"><span data-i18n="p3.m_seo">SEO Engine:</span> <span class="text-white">Structured JSON-LD</span></div>
+                                    </div>
+                                </div>
+                                <button onclick="openModal('project3')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                    <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <!-- Project Brand Logo (Bottom Right) -->
+                            <div class="flex items-center justify-end self-end pt-2">
+                                <div class="px-3.5 py-1.5 rounded-xl bg-white/[0.92] border border-white/30 backdrop-blur-md flex items-center shadow-md hover:bg-white transition-all group/logo">
+                                    <img src="assets/logo-viphenix.png" alt="Viphenix Global Technical Solutions" class="h-8 w-auto max-w-[140px] object-contain transition-transform duration-300 group-hover/logo:scale-105">
                                 </div>
                             </div>
-                            <button onclick="openModal('project3')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
-                                <span data-i18n="p.inspect_btn">Inspect Details</span>
-                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
-                            </button>
                         </div>
                     </div>
                 </article>
