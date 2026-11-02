@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Developer | Backend & AI-Augmented Engineering</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#0f0f11',
+                        surfaceMuted: '#18181b',
+                        surfaceBorder: '#27272a',
+                        textPrimary: '#fafafa',
+                        textMuted: '#a1a1aa'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        /* Subtle Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-[#09090b] text-[#fafafa] font-sans antialiased selection:bg-neutral-800 selection:text-white min-h-screen relative">
+
+    <!-- Background Subtle Glow & Grid -->
+    <div class="fixed inset-0 dot-pattern pointer-events-none opacity-40 -z-10"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Top Sticky Navigation -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#09090b]/80 border-b border-surfaceBorder/60 transition-all">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-mono text-sm tracking-wider font-semibold text-textPrimary flex items-center gap-2 group">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>DEV<span class="text-neutral-500">.LOG</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-textMuted">
+                <a href="#about" class="hover:text-white transition-colors" data-i18n="nav.overview">Overview</a>
+                <a href="#profile" class="hover:text-white transition-colors" data-i18n="nav.profile">About Me</a>
+                <a href="#competencies" class="hover:text-white transition-colors" data-i18n="nav.skills">Skills</a>
+                <a href="#projects" class="hover:text-white transition-colors" data-i18n="nav.projects">Projects</a>
+                <a href="#workflow" class="hover:text-white transition-colors" data-i18n="nav.philosophy">AI Philosophy</a>
+                <a href="#contact" class="hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <!-- Language Switcher & Availability CTA -->
+            <div class="flex items-center gap-3">
+                <!-- EN / VI Switcher Button -->
+                <button onclick="toggleLanguage()" id="lang-toggle-btn" class="text-xs font-mono px-2.5 py-1.5 rounded-full border border-surfaceBorder bg-surface hover:border-neutral-500 transition-colors text-neutral-300 hover:text-white flex items-center gap-1.5" title="Switch language / Chuyển ngôn ngữ">
+                    <i data-lucide="languages" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span id="lang-indicator" class="font-semibold text-white">EN</span>
+                </button>
+
+                <a href="#contact" class="text-xs font-mono px-3.5 py-1.5 rounded-full border border-surfaceBorder bg-surface hover:border-neutral-500 transition-colors text-neutral-300 hover:text-white flex items-center gap-1.5">
+                    <span data-i18n="nav.hire">Hire Me</span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pt-16 pb-24 space-y-28">
+
+        <!-- 1. HERO SECTION -->
+        <section id="about" class="pt-6 md:pt-12">
+            <!-- Role pill -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-surfaceBorder bg-surface text-xs font-mono text-textMuted mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-neutral-400"></span>
+                <span data-i18n="hero.role">Full Stack Developer &bull; Backend Heavy</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white max-w-3xl leading-[1.12]" data-i18n="hero.title">
+                Architecting resilient backends. Delivering full-stack solutions with AI speed.
+            </h1>
+
+            <p class="mt-6 text-base sm:text-lg text-textMuted max-w-2xl leading-relaxed" data-i18n="hero.desc">
+                Specialized in distributed backend services, asynchronous job pipelines, and concurrent databases with <span class="text-white font-medium">NestJS</span> and <span class="text-white font-medium">Spring Boot</span>. Leveraging advanced AI tools (Cursor, Claude, Codex) to design and ship production-ready, full-stack systems from frontend UI to deployment.
+            </p>
+
+            <!-- CTA Actions -->
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+                <a href="#projects" class="px-5 py-2.5 rounded-lg bg-white text-black font-medium text-sm hover:bg-neutral-200 transition-all flex items-center gap-2 shadow-sm">
+                    <span data-i18n="hero.cta_explore">Explore Featured Work</span>
+                    <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+
+                <button onclick="copyEmail()" id="copy-email-btn" class="px-5 py-2.5 rounded-lg border border-surfaceBorder bg-surface hover:border-neutral-500 text-neutral-300 hover:text-white text-sm transition-all flex items-center gap-2">
+                    <i data-lucide="copy" class="w-4 h-4" id="copy-icon"></i>
+                    <span id="copy-text" data-i18n="hero.cta_copy">Copy Email</span>
+                </button>
+
+                <a href="#contact" class="px-4 py-2.5 text-sm text-textMuted hover:text-white transition-colors underline underline-offset-4 decoration-neutral-700" data-i18n="hero.cta_contact">
+                    Get in touch
+                </a>
+            </div>
+
+            <!-- Quick Metrics / Key Strengths -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-8 border-t border-surfaceBorder/70 font-mono">
+                <div>
+                    <div class="text-xs text-textMuted" data-i18n="metrics.focus_label">PRIMARY FOCUS</div>
+                    <div class="text-sm font-semibold text-white mt-1" data-i18n="metrics.focus_val">Backend & Systems</div>
+                </div>
+                <div>
+                    <div class="text-xs text-textMuted" data-i18n="metrics.engines_label">CORE ENGINES</div>
+                    <div class="text-sm font-semibold text-white mt-1">NestJS / Spring Boot</div>
+                </div>
+                <div>
+                    <div class="text-xs text-textMuted" data-i18n="metrics.storage_label">DATA STORAGE</div>
+                    <div class="text-sm font-semibold text-white mt-1">Postgres / Mongo / Redis</div>
+                </div>
+                <div>
+                    <div class="text-xs text-textMuted" data-i18n="metrics.velocity_label">SPEED MULTIPLIER</div>
+                    <div class="text-sm font-semibold text-white mt-1" data-i18n="metrics.velocity_val">AI-Assisted Delivery</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1.5. ABOUT ME & EDUCATION SECTION -->
+        <section id="profile" class="p-6 sm:p-8 rounded-2xl border border-surfaceBorder bg-surface/70 space-y-8 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surfaceBorder/60 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest" data-i18n="profile.badge">Background & Education</span>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mt-1" data-i18n="profile.title">Engineering Identity</h2>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-xs text-neutral-400">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span data-i18n="profile.status">Ready for Engagements</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                <!-- Avatar & Identity column (4 cols) -->
+                <div class="md:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
+                    <div class="relative group">
+                        <!-- Subtle Glow Behind Avatar -->
+                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-neutral-700 via-neutral-800 to-white/20 blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                        
+                        <!-- Avatar Container -->
+                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border border-surfaceBorder bg-surfaceMuted flex items-center justify-center shadow-xl">
+                            <!-- Profile photo -->
+                            <img src="assets/avatar.jpg" 
+                                 alt="Trần Hữu Trí Avatar" 
+                                 id="user-avatar"
+                                 class="w-full h-full object-cover object-[50%_20%] grayscale contrast-110 hover:grayscale-0 transition-all duration-500 cursor-pointer"
+                                 onclick="openImageModal('assets/avatar.jpg', 'Trần Hữu Trí — Full Stack Software Engineer')"
+                                 title="Click to view avatar"
+                                 onerror="this.src='https://placehold.co/400x400/18181b/fafafa?text=TRI+TRAN'">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-bold text-white tracking-tight">Trần Hữu Trí</h3>
+                        <p class="text-xs font-mono text-neutral-400" data-i18n="profile.subtitle">Full Stack Software Engineer</p>
+                        <p class="text-xs text-neutral-500 font-mono">tranhuutri2311@gmail.com</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-1 justify-center sm:justify-start">
+                        <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-surfaceMuted border border-surfaceBorder text-neutral-300">Hanoi, Vietnam</span>
+                        <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-surfaceMuted border border-surfaceBorder text-neutral-300">GMT+7</span>
+                    </div>
+                </div>
+
+                <!-- Bio & Education Details column (8 cols) -->
+                <div class="md:col-span-8 space-y-6">
+                    <!-- Bio Description -->
+                    <div class="space-y-3">
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold" data-i18n="profile.bio_heading">About Me</div>
+                        <p class="text-sm text-textMuted leading-relaxed" data-i18n="profile.bio_text">
+                            I am a software engineer with a strong foundation in backend development, distributed job systems, and ACID database modeling. Embracing the AI paradigm shift, I combine deep system architecture intuition with AI-assisted engineering tools to build high-performance, full-stack systems with rapid execution and uncompromising reliability.
+                        </p>
+                    </div>
+
+                    <!-- Education Block -->
+                    <div class="space-y-3 pt-2">
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold" data-i18n="profile.edu_heading">Education & Academic Foundation</div>
+                        
+                        <div class="p-4 rounded-xl border border-surfaceBorder bg-surfaceMuted/60 space-y-2 hover:border-neutral-500 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                <div class="font-semibold text-white text-sm" data-i18n="profile.edu_degree">Bachelor of Information Technology / Software Engineering</div>
+                                <span class="text-xs font-mono text-neutral-500" data-i18n="profile.edu_period">Graduated</span>
+                            </div>
+                            <div class="text-xs text-neutral-300 font-medium" data-i18n="profile.edu_school">University / College of Information Technology</div>
+                            <p class="text-xs text-textMuted leading-relaxed" data-i18n="profile.edu_desc">
+                                Rigorous coursework in Data Structures & Algorithms, Object-Oriented Design (OOP), Relational Database Management Systems, Network Protocols, and Software Engineering Methodologies.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Highlights Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                        <div class="p-3 rounded-lg border border-surfaceBorder/80 bg-surfaceMuted/30">
+                            <div class="text-[11px] font-mono text-neutral-400" data-i18n="profile.h1_label">CORE STRENGTH</div>
+                            <div class="text-xs font-semibold text-white mt-0.5" data-i18n="profile.h1_val">Backend Concurrency & Queues</div>
+                        </div>
+                        <div class="p-3 rounded-lg border border-surfaceBorder/80 bg-surfaceMuted/30">
+                            <div class="text-[11px] font-mono text-neutral-400" data-i18n="profile.h2_label">AI WORKFLOW</div>
+                            <div class="text-xs font-semibold text-white mt-0.5">Cursor &bull; Claude &bull; Codex</div>
+                        </div>
+                        <div class="p-3 rounded-lg border border-surfaceBorder/80 bg-surfaceMuted/30">
+                            <div class="text-[11px] font-mono text-neutral-400" data-i18n="profile.h3_label">ENGINEERING ETHOS</div>
+                            <div class="text-xs font-semibold text-white mt-0.5" data-i18n="profile.h3_val">Clean Code &bull; Speed &bull; Pragmatism</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CORE COMPETENCIES -->
+        <section id="competencies" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surfaceBorder pb-4">
+                <div>
+                    <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest" data-i18n="skills.badge">Capabilities</span>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mt-1" data-i18n="skills.title">Technical Stack & Toolkit</h2>
+                </div>
+                <p class="text-xs font-mono text-textMuted" data-i18n="skills.subtitle">Clean Architecture &bull; Async Pipelines &bull; Agile Delivery</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Backend Foundation -->
+                <div class="p-6 rounded-xl border border-surfaceBorder bg-surface/70 hover:border-neutral-500 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-surfaceMuted border border-surfaceBorder flex items-center justify-center text-white mb-5">
+                            <i data-lucide="server" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-white text-base" data-i18n="skills.c1_title">Backend & Architecture</h3>
+                        <p class="text-xs text-textMuted mt-2 leading-relaxed" data-i18n="skills.c1_desc">
+                            Engineering resilient, secure, and scalable APIs based on microservices and extensible monolithic patterns.
+                        </p>
+                        <div class="mt-5 space-y-2 text-xs font-mono text-neutral-300">
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>NestJS (TypeScript), Node.js</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>Java, Spring Boot</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span data-i18n="skills.c1_item3">BullMQ, Redis, Background Jobs</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span data-i18n="skills.c1_item4">Microservices, Event-driven flows</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-surfaceBorder/60 flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">REST</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">AWS S3</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">JWT Auth</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Databases & Infra -->
+                <div class="p-6 rounded-xl border border-surfaceBorder bg-surface/70 hover:border-neutral-500 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-surfaceMuted border border-surfaceBorder flex items-center justify-center text-white mb-5">
+                            <i data-lucide="database" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-white text-base" data-i18n="skills.c2_title">Databases & Caching</h3>
+                        <p class="text-xs text-textMuted mt-2 leading-relaxed" data-i18n="skills.c2_desc">
+                            Designing normalized relational schemas, unstructured document stores, and in-memory cache strategies.
+                        </p>
+                        <div class="mt-5 space-y-2 text-xs font-mono text-neutral-300">
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>PostgreSQL (Relational, ACID)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>MongoDB (Document store, Logs)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>MySQL, TypeORM, Prisma</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>Redis In-memory Caching</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-surfaceBorder/60 flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Indexing</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Transactions</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Data Integrity</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Frontend & AI-Augmented Delivery -->
+                <div class="p-6 rounded-xl border border-surfaceBorder bg-surface/70 hover:border-neutral-500 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-surfaceMuted border border-surfaceBorder flex items-center justify-center text-white mb-5">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-white text-base" data-i18n="skills.c3_title">Client & AI Velocity</h3>
+                        <p class="text-xs text-textMuted mt-2 leading-relaxed" data-i18n="skills.c3_desc">
+                            Crafting slick frontends and pairing with state-of-the-art AI developer tooling to rapidly deliver complete software solutions.
+                        </p>
+                        <div class="mt-5 space-y-2 text-xs font-mono text-neutral-300">
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>React, Next.js, Tailwind CSS</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>Android (Java / Kotlin background)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span>Cursor, Claude 3.5, Codex</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+                                <span data-i18n="skills.c3_item4">Automated Unit Tests & Scaffolding</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-surfaceBorder/60 flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Prompt Eng</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Responsive UI</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surfaceMuted text-neutral-400">Rapid Ship</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FEATURED PROJECTS -->
+        <section id="projects" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-surfaceBorder pb-4">
+                <div>
+                    <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest" data-i18n="proj.badge">Selected Works</span>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mt-1" data-i18n="proj.title">Featured Case Studies</h2>
+                </div>
+                <!-- Filter Pills -->
+                <div class="flex items-center gap-2 font-mono text-xs" id="project-filters">
+                    <button onclick="filterProjects('all')" class="filter-btn active px-3 py-1 rounded bg-white text-black font-medium transition-all" data-category="all" data-i18n="proj.filter_all">All (3)</button>
+                    <button onclick="filterProjects('backend')" class="filter-btn px-3 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-textMuted hover:text-white transition-all" data-category="backend" data-i18n="proj.filter_ent">Enterprise</button>
+                    <button onclick="filterProjects('fullstack')" class="filter-btn px-3 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-textMuted hover:text-white transition-all" data-category="fullstack" data-i18n="proj.filter_fs">Full Stack & App</button>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+
+                <!-- PROJECT 1: Huyhoangjsc Enterprise Platform -->
+                <article class="project-item p-6 sm:p-8 rounded-xl border border-surfaceBorder bg-surface/60 hover:border-neutral-500/80 transition-all group" data-type="backend">
+                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                        <div class="space-y-4 max-w-2xl">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-neutral-800 text-neutral-300 border border-neutral-700" data-i18n="p1.badge">Production Enterprise</span>
+                                <span class="text-xs font-mono text-neutral-500" data-i18n="p1.sub">Microservices Platform</span>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-neutral-200 transition-colors" data-i18n="p1.title">
+                                    Huyhoangjsc Enterprise Platform (HRM & Real-time Chat)
+                                </h3>
+                                <a href="https://home.huyhoangjsc.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-surfaceMuted border border-surfaceBorder text-neutral-300 hover:text-white hover:border-neutral-400 transition-colors">
+                                    <span>home.huyhoangjsc.com</span>
+                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-sm text-textMuted leading-relaxed" data-i18n="p1.desc">
+                                Contributed to the development and scaling of an enterprise digital governance and internal collaboration platform built on a microservices ecosystem with <span class="text-neutral-200">NestJS</span> and <span class="text-neutral-200">React (TypeScript)</span>. The system clearly decouples two key functional engines: heavy-computation Human Resource Management (HRM) and ultra-low-latency real-time chat.
+                            </p>
+
+                            <!-- Key Technical Highlights -->
+                            <div class="space-y-2 pt-2">
+                                <div class="text-xs font-mono text-neutral-400 font-semibold uppercase tracking-wider" data-i18n="p1.arch_title">Key Contributions & Architecture:</div>
+                                <ul class="text-xs text-textMuted space-y-1.5 list-disc list-inside">
+                                    <li data-i18n="p1.arch_1"><span class="text-neutral-200 font-medium">HRM Engine:</span> Configured <span class="text-neutral-200">BullMQ + Redis</span> distributed queues to handle intensive background jobs (timesheet payroll calculations, batch report generation) without blocking the primary event loop; guaranteed ACID transactions in <span class="text-neutral-200">PostgreSQL</span>.</li>
+                                    <li data-i18n="p1.arch_2"><span class="text-neutral-200 font-medium">Real-time Chat Service:</span> Engineered instant cross-department messaging with WebSocket connections; optimized chat history storage and flexible schemas in <span class="text-neutral-200">MongoDB</span>.</li>
+                                    <li data-i18n="p1.arch_3"><span class="text-neutral-200 font-medium">Media & Storage:</span> Integrated <span class="text-neutral-200">AWS S3 Pre-signed URLs</span> for high-speed direct document/attachment uploads, eliminating unnecessary bandwidth overhead on backend servers.</li>
+                                    <li data-i18n="p1.arch_4">Constructed a unified, responsive enterprise operations console using <span class="text-neutral-200">React & TypeScript</span>.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="flex flex-wrap gap-2 pt-3">
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">NestJS</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">React</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">TypeScript</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">PostgreSQL (HRM)</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">MongoDB (Chat)</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">BullMQ & Redis</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">WebSockets</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">AWS S3</span>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Action / Mini Architecture Diagram -->
+                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                            <div class="font-mono text-xs space-y-3">
+                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DUAL-ENGINE FLOW</div>
+                                <div class="text-[11px] text-neutral-400 space-y-1">
+                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">React Client</div>
+                                    <div class="text-center text-neutral-600">↓ REST / WebSocket</div>
+                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">NestJS Gateway</div>
+                                    <div class="grid grid-cols-2 gap-1 text-[10px] text-center pt-1">
+                                        <div class="p-1 rounded bg-surface border border-surfaceBorder">
+                                            <div class="text-white font-semibold">HRM Module</div>
+                                            <div class="text-neutral-400">BullMQ + PG</div>
+                                        </div>
+                                        <div class="p-1 rounded bg-surface border border-surfaceBorder">
+                                            <div class="text-white font-semibold">Chat Module</div>
+                                            <div class="text-neutral-400">Real-time + Mongo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="openModal('project1')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2: MoneyMate (Bank Notification Tracker) -->
+                <article class="project-item p-6 sm:p-8 rounded-xl border border-surfaceBorder bg-surface/60 hover:border-neutral-500/80 transition-all group" data-type="fullstack">
+                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                        <div class="space-y-4 max-w-2xl">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-neutral-800 text-neutral-300 border border-neutral-700" data-i18n="p2.badge">Personal Fintech System</span>
+                                <span class="text-xs font-mono text-neutral-500">Android &bull; Spring Boot &bull; React</span>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-neutral-200 transition-colors" data-i18n="p2.title">
+                                    MoneyMate — Real-time Bank Transaction Tracker via OS Notifications
+                                </h3>
+                                <a href="https://moneymate.hostless.site/about" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-surfaceMuted border border-surfaceBorder text-neutral-300 hover:text-white hover:border-neutral-400 transition-colors">
+                                    <span>moneymate.hostless.site/about</span>
+                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-sm text-textMuted leading-relaxed" data-i18n="p2.desc">
+                                Automated personal finance solution that intercepts banking SMS/push alerts directly via Android OS notifications. Eliminates tedious manual bookkeeping by parsing payment transactions in real time and synchronizing them into a centralized ledger.
+                            </p>
+
+                            <!-- Key Technical Highlights -->
+                            <div class="space-y-2 pt-2">
+                                <div class="text-xs font-mono text-neutral-400 font-semibold uppercase tracking-wider" data-i18n="p2.arch_title">Key Contributions & Architecture:</div>
+                                <ul class="text-xs text-textMuted space-y-1.5 list-disc list-inside">
+                                    <li data-i18n="p2.arch_1">Engineered a persistent <span class="text-neutral-200">Android NotificationListenerService</span> running 24/7 (Doze-resistant) to extract balance mutation amounts, source accounts, and transaction descriptions.</li>
+                                    <li data-i18n="p2.arch_2">Constructed a robust backend using <span class="text-neutral-200">Spring Boot & PostgreSQL</span> equipped with JWT authentication and idempotent transaction recording.</li>
+                                    <li data-i18n="p2.arch_3">Built an intuitive web analytics suite with <span class="text-neutral-200">React</span> to visualize net worth, monthly income/expenses, and automated budget categorizations.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="flex flex-wrap gap-2 pt-3">
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Java</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Spring Boot</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Android Native</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">React</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">PostgreSQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Action -->
+                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                            <div class="font-mono text-xs space-y-3">
+                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2">DATA PIPELINE</div>
+                                <div class="text-[11px] text-neutral-400 space-y-1">
+                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Bank Push Notification</div>
+                                    <div class="text-center text-neutral-600">↓ Android Service (Regex)</div>
+                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">Spring Boot API</div>
+                                    <div class="text-center text-neutral-600">↓ Ledger Store</div>
+                                    <div class="p-1.5 rounded bg-surface border border-surfaceBorder text-center">PostgreSQL + React UI</div>
+                                </div>
+                            </div>
+                            <button onclick="openModal('project2')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3: Viphenix Corporate Website -->
+                <article class="project-item p-6 sm:p-8 rounded-xl border border-surfaceBorder bg-surface/60 hover:border-neutral-500/80 transition-all group" data-type="fullstack">
+                    <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                        <div class="space-y-4 max-w-2xl">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-neutral-800 text-neutral-300 border border-neutral-700" data-i18n="p3.badge">Client Delivery</span>
+                                <span class="text-xs font-mono text-neutral-500" data-i18n="p3.sub">Corporate Web Platform &bull; Static Engine</span>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-neutral-200 transition-colors" data-i18n="p3.title">
+                                    Viphenix Global Technical Solutions — High-Performance Corporate Portal
+                                </h3>
+                                <a href="https://viphenix-tech.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-surfaceMuted border border-surfaceBorder text-neutral-300 hover:text-white hover:border-neutral-400 transition-colors">
+                                    <span>viphenix-tech.com</span>
+                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-sm text-textMuted leading-relaxed" data-i18n="p3.desc">
+                                Engineered a high-speed corporate portal for an international engineering consultancy and cross-border trade facilitator (Hong Kong &bull; Vietnam &bull; Global). Prioritized ultra-fast loading times, technical search engine visibility, and internationalized user experience.
+                            </p>
+
+                            <!-- Key Technical Highlights -->
+                            <div class="space-y-2 pt-2">
+                                <div class="text-xs font-mono text-neutral-400 font-semibold uppercase tracking-wider" data-i18n="p3.arch_title">Key Contributions & Architecture:</div>
+                                <ul class="text-xs text-textMuted space-y-1.5 list-disc list-inside">
+                                    <li data-i18n="p3.arch_1"><span class="text-neutral-200 font-medium">Static Site Architecture:</span> Implemented <span class="text-neutral-200">Astro</span> to generate pre-rendered static HTML with near-zero runtime JavaScript, attaining Google PageSpeed scores above 95+.</li>
+                                    <li data-i18n="p3.arch_2"><span class="text-neutral-200 font-medium">Lightweight Internationalization:</span> Built a native Vanilla JS language switcher mechanism without bloated external libraries.</li>
+                                    <li data-i18n="p3.arch_3"><span class="text-neutral-200 font-medium">Enterprise Technical SEO:</span> Standardized structured data via <span class="text-neutral-200">JSON-LD</span>, canonical tags, automated sitemap.xml, and social media OpenGraph definitions.</li>
+                                    <li data-i18n="p3.arch_4"><span class="text-neutral-200 font-medium">Automated CI/CD Pipeline:</span> Configured continuous deployment with <span class="text-neutral-200">Netlify Build & Global CDN Edge</span> for distributed caching and sub-second global response.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="flex flex-wrap gap-2 pt-3">
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Astro</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Vanilla JavaScript</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">CSS3 / Responsive</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">JSON-LD / SEO</span>
+                                <span class="px-2 py-1 rounded bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-neutral-300">Netlify CI/CD</span>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Action -->
+                        <div class="lg:w-64 w-full flex-shrink-0 bg-surfaceMuted/50 border border-surfaceBorder/60 p-4 rounded-lg flex flex-col justify-between">
+                            <div class="font-mono text-xs space-y-3">
+                                <div class="text-neutral-400 font-semibold border-b border-surfaceBorder/60 pb-2" data-i18n="p3.metrics_title">PERFORMANCE METRICS</div>
+                                <div class="text-[11px] text-neutral-400 space-y-2">
+                                    <div class="flex justify-between"><span data-i18n="p3.m_arch">Architecture:</span> <span class="text-white">Static / Astro</span></div>
+                                    <div class="flex justify-between"><span data-i18n="p3.m_score">PageSpeed Score:</span> <span class="text-emerald-400 font-semibold">98 / 100</span></div>
+                                    <div class="flex justify-between"><span data-i18n="p3.m_edge">CDN Edge:</span> <span class="text-white">Netlify Global</span></div>
+                                    <div class="flex justify-between"><span data-i18n="p3.m_seo">SEO Engine:</span> <span class="text-white">Structured JSON-LD</span></div>
+                                </div>
+                            </div>
+                            <button onclick="openModal('project3')" class="mt-4 w-full py-2 rounded bg-surface border border-surfaceBorder hover:border-neutral-400 text-xs font-mono text-neutral-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                <span data-i18n="p.inspect_btn">Inspect Details</span>
+                                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 4. ENGINEERING WORKFLOW & AI PHILOSOPHY -->
+        <section id="workflow" class="p-8 sm:p-10 rounded-2xl border border-surfaceBorder bg-surface relative overflow-hidden">
+            <div class="max-w-2xl space-y-4">
+                <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest" data-i18n="wf.badge">Philosophy & Approach</span>
+                <h2 class="text-2xl font-bold tracking-tight text-white" data-i18n="wf.title">
+                    The Modern Full-Stack Engineer: Backend Depth Meets AI Velocity
+                </h2>
+                <p class="text-sm text-textMuted leading-relaxed" data-i18n="wf.desc">
+                    I treat AI as a powerful <strong class="text-neutral-200 font-medium">force multiplier</strong> rather than a black-box replacement for core software engineering principles:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-xs font-mono">
+                    <div class="p-4 rounded-lg bg-surfaceMuted border border-surfaceBorder">
+                        <div class="text-white font-semibold flex items-center gap-2 mb-1">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                            <span data-i18n="wf.card1_title">Backend Depth Controls Quality</span>
+                        </div>
+                        <p class="text-neutral-400 font-sans mt-2" data-i18n="wf.card1_desc">
+                            Deep intuition in concurrency, database isolation, distributed locks, and idempotency guarantees high reliability and prevents insidious AI-generated bugs.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-lg bg-surfaceMuted border border-surfaceBorder">
+                        <div class="text-white font-semibold flex items-center gap-2 mb-1">
+                            <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                            <span data-i18n="wf.card2_title">AI Unlocks Full-Stack Speed</span>
+                        </div>
+                        <p class="text-neutral-400 font-sans mt-2" data-i18n="wf.card2_desc">
+                            Leveraging Cursor, Codex, and Claude to swiftly generate interactive UI components, boilerplate scaffolding, and automated unit test suites — effectively turning me into a one-person delivery team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT & FOOTER -->
+        <section id="contact" class="space-y-10 border-t border-surfaceBorder pt-16">
+            <div class="max-w-xl space-y-3">
+                <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest" data-i18n="contact.badge">Let's Connect</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white" data-i18n="contact.title">Ready for High-Impact Projects</h2>
+                <p class="text-sm text-textMuted" data-i18n="contact.desc">
+                    Open for Full-time roles (Vietnam) or high-impact Remote / Outsource / Freelance software engagements globally.
+                </p>
+            </div>
+
+            <!-- Contact Form & Socials -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <!-- Form -->
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="md:col-span-3 space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono text-neutral-400 mb-1" data-i18n="form.name_label">YOUR NAME</label>
+                        <input type="text" id="sender-name" name="name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-lg bg-surface border border-surfaceBorder text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-400 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-neutral-400 mb-1" data-i18n="form.email_label">EMAIL ADDRESS</label>
+                        <input type="email" id="sender-email" name="email" required placeholder="name@company.com" class="w-full px-4 py-2.5 rounded-lg bg-surface border border-surfaceBorder text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-400 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-neutral-400 mb-1" data-i18n="form.details_label">PROJECT OR OPPORTUNITY DETAILS</label>
+                        <textarea id="sender-message" name="message" rows="4" required placeholder="Tell me about your tech stack, timeline, or position..." class="w-full px-4 py-2.5 rounded-lg bg-surface border border-surfaceBorder text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-400 transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-3 rounded-lg bg-white text-black font-medium text-sm hover:bg-neutral-200 transition-all flex items-center justify-center gap-2">
+                        <span data-i18n="form.send_btn">Send Message</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                    <div id="form-feedback" class="text-xs font-mono text-emerald-400 hidden text-center p-3 rounded-lg bg-emerald-950/40 border border-emerald-800" data-i18n="form.feedback">
+                        Message sent successfully to tranhuutri2311@gmail.com!
+                    </div>
+                </form>
+
+                <!-- Direct Links & Info -->
+                <div class="md:col-span-2 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="p-4 rounded-lg bg-surface border border-surfaceBorder space-y-1">
+                            <div class="text-neutral-500" data-i18n="info.email_label">DIRECT EMAIL</div>
+                            <div class="text-white font-medium select-all">tranhuutri2311@gmail.com</div>
+                        </div>
+
+                        <div class="p-4 rounded-lg bg-surface border border-surfaceBorder space-y-1">
+                            <div class="text-neutral-500" data-i18n="info.loc_label">LOCATION & TIMEZONE</div>
+                            <div class="text-white font-medium" data-i18n="info.loc_val">Hanoi, Vietnam (GMT+7)</div>
+                            <div class="text-neutral-400 text-[11px]" data-i18n="info.loc_sub">Available for global asynchronous collaboration</div>
+                        </div>
+
+                        <div class="p-4 rounded-lg bg-surface border border-surfaceBorder space-y-1">
+                            <div class="text-neutral-500" data-i18n="info.avail_label">AVAILABILITY</div>
+                            <div class="text-emerald-400 font-medium flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span data-i18n="info.avail_val">Open for new engagements</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- External Profiles -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com" target="_blank" class="p-2.5 rounded-lg border border-surfaceBorder bg-surface hover:border-neutral-400 text-neutral-400 hover:text-white transition-all flex items-center justify-center">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="p-2.5 rounded-lg border border-surfaceBorder bg-surface hover:border-neutral-400 text-neutral-400 hover:text-white transition-all flex items-center justify-center">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>
+                        <a href="mailto:tranhuutri2311@gmail.com" class="p-2.5 rounded-lg border border-surfaceBorder bg-surface hover:border-neutral-400 text-neutral-400 hover:text-white transition-all flex items-center justify-center" title="Send email to tranhuutri2311@gmail.com">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer copyright -->
+            <div class="pt-10 border-t border-surfaceBorder/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+                <p>&copy; 2026 Developer Portfolio. Minimalist Monochrome Edition.</p>
+                <p data-i18n="footer.sub">Built with Tailwind CSS &amp; Clean Architecture Mindset.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CASE STUDY MODAL -->
+    <div id="modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0f0f11] border border-surfaceBorder max-w-3xl w-full rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between border-b border-surfaceBorder pb-4">
+                <div>
+                    <span id="modal-tag" class="text-xs font-mono text-neutral-400"></span>
+                    <h3 id="modal-title" class="text-xl font-bold text-white mt-1"></h3>
+                </div>
+                <button onclick="closeModal()" class="p-1 rounded text-neutral-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div id="modal-body" class="space-y-4 text-sm text-textMuted leading-relaxed">
+                <!-- Dynamically Injected -->
+            </div>
+
+            <div class="pt-4 border-t border-surfaceBorder flex justify-end">
+                <button onclick="closeModal()" id="modal-close-btn" class="px-4 py-2 rounded-lg bg-surfaceMuted border border-surfaceBorder text-xs font-mono text-white hover:bg-neutral-800 transition-all">
+                    Close Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE LIGHTBOX MODAL (Full Resolution In-Page Preview) -->
+    <div id="image-modal" onclick="closeImageModal()" class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-8 transition-opacity duration-200">
+        <div class="relative max-w-5xl w-full flex flex-col items-center" onclick="event.stopPropagation()">
+            <!-- Close button -->
+            <button type="button" onclick="closeImageModal()" class="absolute -top-11 right-0 sm:right-2 px-3 py-1.5 rounded-full bg-surfaceMuted border border-surfaceBorder text-neutral-300 hover:text-white hover:border-neutral-400 transition-colors flex items-center gap-1.5 text-xs font-mono shadow-lg" title="Close preview (Esc)">
+                <i data-lucide="x" class="w-4 h-4"></i>
+                <span>Close</span>
+            </button>
+            <!-- Image Container -->
+            <div class="w-full max-h-[82vh] overflow-hidden rounded-xl border border-surfaceBorder bg-[#09090b] shadow-2xl flex items-center justify-center">
+                <img id="lightbox-img" src="" alt="Full Preview" class="w-full h-auto max-h-[82vh] object-contain">
+            </div>
+            <!-- Caption -->
+            <div id="lightbox-caption" class="mt-3 text-xs font-mono text-neutral-400 text-center"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Multi-language Translation Dictionary (EN & VI)
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                "nav.overview": "Overview",
+                "nav.profile": "About Me",
+                "nav.skills": "Skills",
+                "nav.projects": "Projects",
+                "nav.philosophy": "AI Philosophy",
+                "nav.contact": "Contact",
+                "nav.hire": "Hire Me",
+                "profile.badge": "Background & Education",
+                "profile.title": "Engineering Identity",
+                "profile.status": "Ready for Engagements",
+                "profile.subtitle": "Full Stack Software Engineer",
+                "profile.bio_heading": "About Me",
+                "profile.bio_text": "I am a software engineer with a strong foundation in backend development, distributed job systems, and ACID database modeling. Embracing the AI paradigm shift, I combine deep system architecture intuition with AI-assisted engineering tools to build high-performance, full-stack systems with rapid execution and uncompromising reliability.",
+                "profile.edu_heading": "Education & Academic Foundation",
+                "profile.edu_degree": "Bachelor of Information Technology / Software Engineering",
+                "profile.edu_period": "Graduated",
+                "profile.edu_school": "University / College of Information Technology",
+                "profile.edu_desc": "Rigorous coursework in Data Structures & Algorithms, Object-Oriented Design (OOP), Relational Database Management Systems, Network Protocols, and Software Engineering Methodologies.",
+                "profile.h1_label": "CORE STRENGTH",
+                "profile.h1_val": "Backend Concurrency & Queues",
+                "profile.h2_label": "AI WORKFLOW",
+                "profile.h3_label": "ENGINEERING ETHOS",
+                "profile.h3_val": "Clean Code • Speed • Pragmatism",
+                "hero.role": "Full Stack Developer • Backend Heavy",
+                "hero.title": "Architecting resilient backends. Delivering full-stack solutions with AI speed.",
+                "hero.desc": "Specialized in distributed backend services, asynchronous job pipelines, and concurrent databases with <span class=\"text-white font-medium\">NestJS</span> and <span class=\"text-white font-medium\">Spring Boot</span>. Leveraging advanced AI tools (Cursor, Claude, Codex) to design and ship production-ready, full-stack systems from frontend UI to deployment.",
+                "hero.cta_explore": "Explore Featured Work",
+                "hero.cta_copy": "Copy Email",
+                "hero.cta_contact": "Get in touch",
+                "metrics.focus_label": "PRIMARY FOCUS",
+                "metrics.focus_val": "Backend & Systems",
+                "metrics.engines_label": "CORE ENGINES",
+                "metrics.storage_label": "DATA STORAGE",
+                "metrics.velocity_label": "SPEED MULTIPLIER",
+                "metrics.velocity_val": "AI-Assisted Delivery",
+                "skills.badge": "Capabilities",
+                "skills.title": "Technical Stack & Toolkit",
+                "skills.subtitle": "Clean Architecture • Async Pipelines • Agile Delivery",
+                "skills.c1_title": "Backend & Architecture",
+                "skills.c1_desc": "Engineering resilient, secure, and scalable APIs based on microservices and extensible monolithic patterns.",
+                "skills.c1_item3": "BullMQ, Redis, Background Jobs",
+                "skills.c1_item4": "Microservices, Event-driven flows",
+                "skills.c2_title": "Databases & Caching",
+                "skills.c2_desc": "Designing normalized relational schemas, unstructured document stores, and in-memory cache strategies.",
+                "skills.c3_title": "Client & AI Velocity",
+                "skills.c3_desc": "Crafting slick frontends and pairing with state-of-the-art AI developer tooling to rapidly deliver complete software solutions.",
+                "skills.c3_item4": "Automated Unit Tests & Scaffolding",
+                "proj.badge": "Selected Works",
+                "proj.title": "Featured Case Studies",
+                "proj.filter_all": "All (3)",
+                "proj.filter_ent": "Enterprise",
+                "proj.filter_fs": "Full Stack & App",
+                "p.inspect_btn": "Inspect Details",
+                "p1.badge": "Production Enterprise",
+                "p1.sub": "Microservices Platform",
+                "p1.title": "Huyhoangjsc Enterprise Platform (HRM & Real-time Chat)",
+                "p1.desc": "Contributed to the development and scaling of an enterprise digital governance and internal collaboration platform built on a microservices ecosystem with <span class=\"text-neutral-200\">NestJS</span> and <span class=\"text-neutral-200\">React (TypeScript)</span>. The system clearly decouples two key functional engines: heavy-computation Human Resource Management (HRM) and ultra-low-latency real-time chat.",
+                "p1.arch_title": "Key Contributions & Architecture:",
+                "p1.arch_1": "<span class=\"text-neutral-200 font-medium\">HRM Engine:</span> Configured <span class=\"text-neutral-200\">BullMQ + Redis</span> distributed queues to handle intensive background jobs (timesheet payroll calculations, batch report generation) without blocking the primary event loop; guaranteed ACID transactions in <span class=\"text-neutral-200\">PostgreSQL</span>.",
+                "p1.arch_2": "<span class=\"text-neutral-200 font-medium\">Real-time Chat Service:</span> Engineered instant cross-department messaging with WebSocket connections; optimized chat history storage and flexible schemas in <span class=\"text-neutral-200\">MongoDB</span>.",
+                "p1.arch_3": "<span class=\"text-neutral-200 font-medium\">Media & Storage:</span> Integrated <span class=\"text-neutral-200\">AWS S3 Pre-signed URLs</span> for high-speed direct document/attachment uploads, eliminating unnecessary bandwidth overhead on backend servers.",
+                "p1.arch_4": "Constructed a unified, responsive enterprise operations console using <span class=\"text-neutral-200\">React & TypeScript</span>.",
+                "p2.badge": "Personal Fintech System",
+                "p2.title": "MoneyMate — Real-time Bank Transaction Tracker via OS Notifications",
+                "p2.desc": "Automated personal finance solution that intercepts banking SMS/push alerts directly via Android OS notifications. Eliminates tedious manual bookkeeping by parsing payment transactions in real time and synchronizing them into a centralized ledger.",
+                "p2.arch_title": "Key Contributions & Architecture:",
+                "p2.arch_1": "Engineered a persistent <span class=\"text-neutral-200\">Android NotificationListenerService</span> running 24/7 (Doze-resistant) to extract balance mutation amounts, source accounts, and transaction descriptions.",
+                "p2.arch_2": "Constructed a robust backend using <span class=\"text-neutral-200\">Spring Boot & PostgreSQL</span> equipped with JWT authentication and idempotent transaction recording.",
+                "p2.arch_3": "Built an intuitive web analytics suite with <span class=\"text-neutral-200\">React</span> to visualize net worth, monthly income/expenses, and automated budget categorizations.",
+                "p3.badge": "Client Delivery",
+                "p3.sub": "Corporate Web Platform • Static Engine",
+                "p3.title": "Viphenix Global Technical Solutions — High-Performance Corporate Portal",
+                "p3.desc": "Engineered a high-speed corporate portal for an international engineering consultancy and cross-border trade facilitator (Hong Kong • Vietnam • Global). Prioritized ultra-fast loading times, technical search engine visibility, and internationalized user experience.",
+                "p3.arch_title": "Key Contributions & Architecture:",
+                "p3.arch_1": "<span class=\"text-neutral-200 font-medium\">Static Site Architecture:</span> Implemented <span class=\"text-neutral-200\">Astro</span> to generate pre-rendered static HTML with near-zero runtime JavaScript, attaining Google PageSpeed scores above 95+.",
+                "p3.arch_2": "<span class=\"text-neutral-200 font-medium\">Lightweight Internationalization:</span> Built a native Vanilla JS language switcher mechanism without bloated external libraries.",
+                "p3.arch_3": "<span class=\"text-neutral-200 font-medium\">Enterprise Technical SEO:</span> Standardized structured data via <span class=\"text-neutral-200\">JSON-LD</span>, canonical tags, automated sitemap.xml, and social media OpenGraph definitions.",
+                "p3.arch_4": "<span class=\"text-neutral-200 font-medium\">Automated CI/CD Pipeline:</span> Configured continuous deployment with <span class=\"text-neutral-200\">Netlify Build & Global CDN Edge</span> for distributed caching and sub-second global response.",
+                "p3.metrics_title": "PERFORMANCE METRICS",
+                "p3.m_arch": "Architecture:",
+                "p3.m_score": "PageSpeed Score:",
+                "p3.m_edge": "CDN Edge:",
+                "p3.m_seo": "SEO Engine:",
+                "wf.badge": "Philosophy & Approach",
+                "wf.title": "The Modern Full-Stack Engineer: Backend Depth Meets AI Velocity",
+                "wf.desc": "I treat AI as a powerful <strong class=\"text-neutral-200 font-medium\">force multiplier</strong> rather than a black-box replacement for core software engineering principles:",
+                "wf.card1_title": "Backend Depth Controls Quality",
+                "wf.card1_desc": "Deep intuition in concurrency, database isolation, distributed locks, and idempotency guarantees high reliability and prevents insidious AI-generated bugs.",
+                "wf.card2_title": "AI Unlocks Full-Stack Speed",
+                "wf.card2_desc": "Leveraging Cursor, Codex, and Claude to swiftly generate interactive UI components, boilerplate scaffolding, and automated unit test suites — effectively turning me into a one-person delivery team.",
+                "contact.badge": "Let's Connect",
+                "contact.title": "Ready for High-Impact Projects",
+                "contact.desc": "Open for Full-time roles (Vietnam) or high-impact Remote / Outsource / Freelance software engagements globally.",
+                "form.name_label": "YOUR NAME",
+                "form.email_label": "EMAIL ADDRESS",
+                "form.details_label": "PROJECT OR OPPORTUNITY DETAILS",
+                "form.send_btn": "Send Message",
+                "form.feedback": "Message recorded! I will reply within 24 hours.",
+                "info.email_label": "DIRECT EMAIL",
+                "info.loc_label": "LOCATION & TIMEZONE",
+                "info.loc_val": "Hanoi, Vietnam (GMT+7)",
+                "info.loc_sub": "Available for global asynchronous collaboration",
+                "info.avail_label": "AVAILABILITY",
+                "info.avail_val": "Open for new engagements",
+                "footer.sub": "Built with Tailwind CSS & Clean Architecture Mindset.",
+                "modal.close": "Close Details"
+            },
+            vi: {
+                "nav.overview": "Tổng quan",
+                "nav.profile": "Bản thân",
+                "nav.skills": "Kỹ năng",
+                "nav.projects": "Dự án",
+                "nav.philosophy": "Triết lý AI",
+                "nav.contact": "Liên hệ",
+                "nav.hire": "Tuyển dụng",
+                "profile.badge": "Lý lịch & Học vấn",
+                "profile.title": "Hồ sơ Năng lực Kỹ thuật",
+                "profile.status": "Sẵn sàng đón nhận cơ hội",
+                "profile.subtitle": "Kỹ sư Phần mềm Full Stack",
+                "profile.bio_heading": "Giới thiệu bản thân",
+                "profile.bio_text": "Tôi là một kỹ sư phần mềm với nền tảng backend vững chắc, có kinh nghiệm thực chiến về hệ thống xử lý hàng đợi phân tán và thiết kế cơ sở dữ liệu giao dịch chuẩn ACID. Đón đầu làn sóng công nghệ AI, tôi kết hợp tư duy kiến trúc hệ thống chuyên sâu cùng các công cụ AI hiện đại để phát triển sản phẩm full-stack toàn diện với tốc độ vượt trội và chất lượng chuẩn mực.",
+                "profile.edu_heading": "Học vấn & Nền tảng Học thuật",
+                "profile.edu_degree": "Cử nhân Công nghệ Thông tin / Kỹ thuật Phần mềm",
+                "profile.edu_period": "Đã tốt nghiệp",
+                "profile.edu_school": "Trường Đại học / Cao đẳng chuyên ngành CNTT",
+                "profile.edu_desc": "Được đào tạo bài bản về Cấu trúc dữ liệu & Giải thuật, Thiết kế hướng đối tượng (OOP), Quản trị cơ sở dữ liệu quan hệ, Giao thức mạng và Quy trình phát triển phần mềm chuẩn mực.",
+                "profile.h1_label": "THẾ MẠNH CHÍNH",
+                "profile.h1_val": "Xử lý hàng đợi & Concurrency",
+                "profile.h2_label": "QUY TRÌNH AI",
+                "profile.h3_label": "TƯ DUY KỸ THUẬT",
+                "profile.h3_val": "Mã nguồn sạch • Tốc độ • Thực tế",
+                "hero.role": "Full Stack Developer • Trọng tâm Backend",
+                "hero.title": "Xây dựng hạ tầng backend vững chãi. Bàn giao giải pháp full-stack với tốc độ AI.",
+                "hero.desc": "Chuyên sâu về kiến trúc phân tán, xử lý hàng đợi tác vụ nền phi đồng bộ và tối ưu cơ sở dữ liệu đồng thời với <span class=\"text-white font-medium\">NestJS</span> và <span class=\"text-white font-medium\">Spring Boot</span>. Làm chủ các công cụ hỗ trợ AI (Cursor, Claude, Codex) để thiết kế và triển khai trọn vẹn sản phẩm từ UI đến hạ tầng.",
+                "hero.cta_explore": "Khám phá dự án",
+                "hero.cta_copy": "Sao chép Email",
+                "hero.cta_contact": "Liên hệ ngay",
+                "metrics.focus_label": "TRỌNG TÂM",
+                "metrics.focus_val": "Backend & Hệ thống",
+                "metrics.engines_label": "FRAMEWORK CHÍNH",
+                "metrics.storage_label": "LƯU TRỮ DỮ LIỆU",
+                "metrics.velocity_label": "ĐÒN BẨY NĂNG SUẤT",
+                "metrics.velocity_val": "Phát triển cùng AI",
+                "skills.badge": "Năng lực chuyên môn",
+                "skills.title": "Ngăn xếp Công nghệ & Công cụ",
+                "skills.subtitle": "Clean Architecture • Hàng đợi phi đồng bộ • Triển khai linh hoạt",
+                "skills.c1_title": "Backend & Kiến trúc Hệ thống",
+                "skills.c1_desc": "Xây dựng các API bảo mật, chịu tải cao và bền bỉ dựa trên microservices và mô hình module mở rộng.",
+                "skills.c1_item3": "BullMQ, Redis, Background Jobs",
+                "skills.c1_item4": "Microservices, Kiến trúc hướng sự kiện",
+                "skills.c2_title": "Cơ sở Dữ liệu & Bộ nhớ Đệm",
+                "skills.c2_desc": "Thiết kế lược đồ quan hệ chuẩn hóa ACID, tài liệu phi cấu trúc và chiến lược tối ưu cache in-memory.",
+                "skills.c3_title": "Giao diện & Tốc độ cùng AI",
+                "skills.c3_desc": "Hiện thực hóa giao diện hiện đại kết hợp sức mạnh của các trợ lý AI để rút ngắn thời gian bàn giao sản phẩm.",
+                "skills.c3_item4": "Sinh tự động Unit Test & Mã khung",
+                "proj.badge": "Dự án Tiêu biểu",
+                "proj.title": "Các Nghiên cứu Tình huống Thực tế",
+                "proj.filter_all": "Tất cả (3)",
+                "proj.filter_ent": "Doanh nghiệp",
+                "proj.filter_fs": "Full Stack & App",
+                "p.inspect_btn": "Xem Chi tiết",
+                "p1.badge": "Sản phẩm Doanh nghiệp",
+                "p1.sub": "Nền tảng Microservices",
+                "p1.title": "Huyhoangjsc Enterprise Platform (HRM & Real-time Chat)",
+                "p1.desc": "Tham gia phát triển và mở rộng hệ thống chuyển đổi số doanh nghiệp theo kiến trúc microservices với <span class=\"text-neutral-200\">NestJS</span> và <span class=\"text-neutral-200\">React (TypeScript)</span>. Tách biệt rõ ràng 2 phân hệ: Quản trị nhân sự (HRM) xử lý tác vụ nặng và Trò chuyện nội bộ (Chat) thời gian thực.",
+                "p1.arch_title": "Đóng góp & Kiến trúc Trọng tâm:",
+                "p1.arch_1": "<span class=\"text-neutral-200 font-medium\">Phân hệ HRM:</span> Cấu hình hàng đợi <span class=\"text-neutral-200\">BullMQ + Redis</span> để xử lý các jobs tính lương, kết xuất báo cáo nặng không gây nghẽn luồng; đảm bảo toàn vẹn dữ liệu trong <span class=\"text-neutral-200\">PostgreSQL</span>.",
+                "p1.arch_2": "<span class=\"text-neutral-200 font-medium\">Dịch vụ Chat:</span> Xây dựng luồng tin nhắn phòng ban tức thời với WebSockets; tối ưu lưu trữ lịch sử hội thoại trong <span class=\"text-neutral-200\">MongoDB</span>.",
+                "p1.arch_3": "<span class=\"text-neutral-200 font-medium\">Lưu trữ & Tệp:</span> Tích hợp <span class=\"text-neutral-200\">AWS S3 Pre-signed URLs</span> để tải tệp đính kèm và hợp đồng trực tiếp, giảm tải băng thông máy chủ backend.",
+                "p1.arch_4": "Xây dựng bảng điều khiển quản trị thống nhất và tương thích thiết bị bằng <span class=\"text-neutral-200\">React & TypeScript</span>.",
+                "p2.badge": "Hệ thống Fintech Cá nhân",
+                "p2.title": "MoneyMate — Theo dõi biến động số dư ngân hàng qua thông báo hệ thống",
+                "p2.desc": "Giải pháp tự động hóa tài chính cá nhân bằng cách bắt thông báo biến động số dư từ Android OS. Loại bỏ hoàn toàn việc ghi chép thủ công bằng cách bóc tách cú pháp giao dịch theo thời gian thực và đồng bộ về sổ cái tập trung.",
+                "p2.arch_title": "Đóng góp & Kiến trúc Trọng tâm:",
+                "p2.arch_1": "Xây dựng service ngầm <span class=\"text-neutral-200\">Android NotificationListenerService</span> chạy 24/7 (kháng chế độ ngủ Doze) để trích xuất số tiền, tài khoản nguồn và nội dung thanh toán.",
+                "p2.arch_2": "Thiết kế backend an toàn với <span class=\"text-neutral-200\">Spring Boot & PostgreSQL</span>, xác thực JWT và cơ chế ghi sổ chống trùng lặp (Idempotency).",
+                "p2.arch_3": "Phát triển Web Dashboard phân tích thu chi trên <span class=\"text-neutral-200\">React</span> để trực quan hóa giá trị ròng và phân loại ngân sách tự động.",
+                "p3.badge": "Bàn giao Khách hàng",
+                "p3.sub": "Nền tảng Doanh nghiệp • Động cơ Tĩnh",
+                "p3.title": "Viphenix Global Technical Solutions — Cổng thông tin Doanh nghiệp Tốc độ cao",
+                "p3.desc": "Thiết kế và xây dựng cổng thông tin nhận diện thương hiệu cho đơn vị tư vấn kỹ thuật năng lượng và xúc tiến thương mại quốc tế (Hồng Kông • Việt Nam • Quốc tế). Đặt trọng tâm vào tốc độ tải trang cực nhanh, tối ưu hóa công cụ tìm kiếm và trải nghiệm quốc tế.",
+                "p3.arch_title": "Đóng góp & Kiến trúc Trọng tâm:",
+                "p3.arch_1": "<span class=\"text-neutral-200 font-medium\">Kiến trúc Static Site:</span> Ứng dụng <span class=\"text-neutral-200\">Astro</span> để render HTML tĩnh không tiêu tốn JavaScript thừa, đạt điểm Google PageSpeed trên 95+.",
+                "p3.arch_2": "<span class=\"text-neutral-200 font-medium\">Đa ngôn ngữ Tinh gọn:</span> Tự phát triển cơ chế đổi ngôn ngữ bằng JavaScript thuần, không phụ thuộc thư viện nặng nề.",
+                "p3.arch_3": "<span class=\"text-neutral-200 font-medium\">Chuẩn hóa SEO:</span> Khai báo dữ liệu có cấu trúc qua <span class=\"text-neutral-200\">JSON-LD Schema</span>, thẻ canonical, sitemap.xml tự động và thẻ chia sẻ OpenGraph.",
+                "p3.arch_4": "<span class=\"text-neutral-200 font-medium\">Quy trình CI/CD Tự động:</span> Triển khai tự động thông qua <span class=\"text-neutral-200\">Netlify Build & CDN Quốc tế</span> để phân phối cache toàn cầu với độ trễ tối thiểu.",
+                "p3.metrics_title": "CHỈ SỐ HIỆU NĂNG",
+                "p3.m_arch": "Kiến trúc:",
+                "p3.m_score": "Điểm PageSpeed:",
+                "p3.m_edge": "Mạng CDN:",
+                "p3.m_seo": "Động cơ SEO:",
+                "wf.badge": "Triết lý & Phương pháp luận",
+                "wf.title": "Kỹ sư Full-Stack Hiện đại: Chiều sâu Backend kết hợp Vận tốc AI",
+                "wf.desc": "Tôi xem AI là một <strong class=\"text-neutral-200 font-medium\">bộ khuếch đại năng lực (Force Multiplier)</strong> chứ không phải giải pháp thay thế tư duy kỹ thuật nền tảng:",
+                "wf.card1_title": "Chiều sâu Backend Kiểm soát Chất lượng",
+                "wf.card1_desc": "Sự hiểu biết sâu sắc về concurrency, lock database, transaction và microservices giúp tôi kiểm soát, audit và loại bỏ các lỗ hổng mà AI có thể sinh ra.",
+                "wf.card2_title": "AI Khơi mở Tốc độ Bàn giao",
+                "wf.card2_desc": "Tận dụng Cursor, Codex và Claude để dựng thần tốc các component UI, boilerplate logic, và unit tests, biến tôi thành một đội ngũ bàn giao độc lập đầy hiệu quả.",
+                "contact.badge": "Kết nối Ngay",
+                "contact.title": "Sẵn sàng cho Dự án Trọng điểm",
+                "contact.desc": "Sẵn sàng đón nhận cơ hội làm việc Toàn thời gian (Việt Nam) hoặc các dự án Remote / Outsource / Freelance quốc tế chất lượng cao.",
+                "form.name_label": "HỌ VÀ TÊN",
+                "form.email_label": "ĐỊA CHỈ EMAIL",
+                "form.details_label": "CHI TIẾT DỰ ÁN HOẶC VỊ TRÍ",
+                "form.send_btn": "Gửi Tin nhắn",
+                "form.feedback": "Đã ghi nhận tin nhắn! Tôi sẽ phản hồi trong vòng 24 giờ.",
+                "info.email_label": "EMAIL TRỰC TIẾP",
+                "info.loc_label": "ĐỊA ĐIỂM & MÚI GIỜ",
+                "info.loc_val": "Hà Nội, Việt Nam (GMT+7)",
+                "info.loc_sub": "Sẵn sàng làm việc bất đồng bộ với đối tác quốc tế",
+                "info.avail_label": "TRẠNG THÁI HIỆN TẠI",
+                "info.avail_val": "Sẵn sàng nhận dự án mới",
+                "footer.sub": "Được xây dựng với Tailwind CSS & Tư duy Clean Architecture.",
+                "modal.close": "Đóng Chi tiết"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('lang-indicator').innerText = lang.toUpperCase();
+
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+
+            // Update close button in modal if present
+            const closeBtn = document.getElementById('modal-close-btn');
+            if (closeBtn) {
+                closeBtn.innerText = i18n[lang]["modal.close"] || "Close Details";
+            }
+        }
+
+        function toggleLanguage() {
+            setLanguage(currentLang === 'en' ? 'vi' : 'en');
+        }
+
+        // Project Filter Logic
+        function filterProjects(category) {
+            const items = document.querySelectorAll('.project-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add('bg-white', 'text-black');
+                    btn.classList.remove('bg-surfaceMuted', 'text-textMuted');
+                } else {
+                    btn.classList.remove('bg-white', 'text-black');
+                    btn.classList.add('bg-surfaceMuted', 'text-textMuted');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.type === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Copy Email Action
+        function copyEmail() {
+            const email = "tranhuutri2311@gmail.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const copyText = document.getElementById("copy-text");
+            const copyIcon = document.getElementById("copy-icon");
+
+            copyText.innerText = currentLang === 'vi' ? "Đã chép Email!" : "Email Copied!";
+            setTimeout(() => {
+                copyText.innerText = currentLang === 'vi' ? "Sao chép Email" : "Copy Email";
+            }, 2500);
+        }
+
+        // Project Modal Visuals - Actual Project Screenshots with In-Page Lightbox
+        const projectVisuals = {
+            project1: `
+                <div class="w-full rounded-xl overflow-hidden border border-surfaceBorder bg-surfaceMuted shadow-2xl relative group">
+                    <button type="button" onclick="openImageModal('assets/huyhoang.jpg', 'Huyhoang JSC Enterprise Platform')" class="w-full text-left block relative group cursor-zoom-in" title="Click to view full image in modal">
+                        <img src="assets/huyhoang.jpg" alt="Huyhoang JSC Enterprise Platform" class="w-full h-auto object-cover rounded-xl transition-all duration-300 group-hover:brightness-105" loading="lazy">
+                        <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-lg">
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            <span>View Full Image</span>
+                        </div>
+                    </button>
+                </div>
+            `,
+            project2: `
+                <div class="w-full rounded-xl overflow-hidden border border-surfaceBorder bg-surfaceMuted shadow-2xl relative group">
+                    <button type="button" onclick="openImageModal('assets/moneymate.png', 'MoneyMate — Live Deployment & Android Companion')" class="w-full text-left block relative group cursor-zoom-in" title="Click to view full image in modal">
+                        <img src="assets/moneymate.png" alt="MoneyMate Application" class="w-full h-auto object-cover rounded-xl transition-all duration-300 group-hover:brightness-105" loading="lazy">
+                        <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-lg">
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            <span>View Full Image</span>
+                        </div>
+                    </button>
+                </div>
+            `,
+            project3: `
+                <div class="w-full rounded-xl overflow-hidden border border-surfaceBorder bg-surfaceMuted shadow-2xl relative group">
+                    <button type="button" onclick="openImageModal('assets/viphenix.png', 'Viphenix Global Technical Solutions Corporate Portal')" class="w-full text-left block relative group cursor-zoom-in" title="Click to view full image in modal">
+                        <img src="assets/viphenix.png" alt="Viphenix Global Technical Solutions" class="w-full h-auto object-cover rounded-xl transition-all duration-300 group-hover:brightness-105" loading="lazy">
+                        <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-lg">
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                            <span>View Full Image</span>
+                        </div>
+                    </button>
+                </div>
+            `
+        };
+
+        const projectModalContent = {
+            en: {
+                project1: {
+                    tag: "HUYHOANGJSC ENTERPRISE ARCHITECTURE",
+                    title: "Huyhoangjsc Enterprise Platform (HRM & Real-time Chat)",
+                    visualKey: "project1",
+                    imageCaption: "Huyhoangjsc Live Corporate & Enterprise Web System",
+                    content: `
+                        <p><strong>Business Context:</strong> Enterprise-grade digital workflow platform powering <a href="https://home.huyhoangjsc.com" target="_blank" rel="noopener noreferrer" class="text-white underline">Huyhoangjsc</a>. The infrastructure cleanly segregates two contradictory workload profiles: computationally heavy batch processing (HRM) and ultra-low latency event loops (Chat).</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">1. Human Resource Management Engine (HRM)</div>
+                            <p class="text-xs text-neutral-300 leading-relaxed">
+                                Manages shift tracking, payroll computation, attendance logs, and multi-tenant reporting. Heavy batch execution is delegated to distributed <code>BullMQ + Redis</code> worker queues, ensuring zero latency blockage on main HTTP threads. Critical payroll ledgers adhere to strict ACID transactions inside <code>PostgreSQL</code>.
+                            </p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">2. Real-time Enterprise Chat Service</div>
+                            <p class="text-xs text-neutral-300 leading-relaxed">
+                                Provides bidirectional <code>WebSocket</code> communication channels for inter-departmental instant messaging and live online presence. Message schemas and conversation timelines are indexed in <code>MongoDB</code> for ultra-fast time-series reading and writing.
+                            </p>
+                        </div>
+                        <p class="text-xs text-neutral-400">
+                            <strong>Media & Asset Distribution:</strong> Employee contracts (HRM) and multimedia attachments (Chat) are transferred directly through secure <code>AWS S3 Pre-signed URLs</code>, bypassing web server proxies and optimizing bandwidth efficiency.
+                        </p>
+                    `
+                },
+                project2: {
+                    tag: "FINTECH & MOBILE-BACKEND INTEGRATION",
+                    title: "MoneyMate — Automatic Bank Transaction Tracker via OS Push Alerts",
+                    visualKey: "project2",
+                    imageCaption: "MoneyMate Official Interface & Android Companion Live Deployment",
+                    content: `
+                        <p><strong>Context & Solved Problem:</strong> Conventional financial trackers fail because users tire of manual data logging. MoneyMate automates 100% of income/expense tracking by intercepting banking balance mutations directly from Android OS notification listeners. Live platform showcase: <a href="https://moneymate.hostless.site/about" target="_blank" rel="noopener noreferrer" class="text-white underline">moneymate.hostless.site/about</a>.</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">Core Engineering & Capabilities:</div>
+                            <ul class="list-disc list-inside space-y-1.5 text-xs text-neutral-300">
+                                <li><strong>Android Native Background Daemon:</strong> Persistent <code>NotificationListenerService</code> operating 24/7 (Doze-resistant) to parse push alerts from major Vietnamese banks (VCB, TCB, MB, ACB, ShopeePay...).</li>
+                                <li><strong>On-Device Regex Extraction:</strong> Client-side text parsing for amounts (+/-), timestamps, and accounts to safeguard privacy before transmitting to servers.</li>
+                                <li><strong>Spring Boot & PostgreSQL Backend:</strong> Secure REST endpoints featuring idempotency tokens to prevent duplicate mutations, paired with automatic expense categorization.</li>
+                                <li><strong>React Dashboard:</strong> Responsive financial health suite with real-time Net Worth visualizations, ledger history, and monthly spending insights.</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                project3: {
+                    tag: "HIGH-PERFORMANCE CLIENT DELIVERY",
+                    title: "Viphenix Global Technical Solutions Corporate Portal",
+                    visualKey: "project3",
+                    imageCaption: "Viphenix Global Technical Solutions International Portal",
+                    content: `
+                        <p><strong>Business Context:</strong> Official portal for <a href="https://viphenix-tech.com" target="_blank" rel="noopener noreferrer" class="text-white underline">Viphenix Global Technical Solutions Ltd. (viphenix-tech.com)</a> — specialized in technical consulting for energy optimization (gasification, CO₂ reduction) and cross-border trade facilitation (China-Qatar, Italy-Vietnam, England-Vietnam).</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">Architecture & Performance Highlights:</div>
+                            <ul class="list-disc list-inside space-y-1.5 text-xs text-neutral-300">
+                                <li><strong>Static Architecture via Astro:</strong> Zero runtime JavaScript payload by default, producing instant page loads and perfect Core Web Vitals (FCP < 0.4s).</li>
+                                <li><strong>Lightweight i18n Engine:</strong> Hand-crafted Vanilla JS internationalization module offering seamless multi-language navigation without bundle bloat.</li>
+                                <li><strong>Technical SEO Foundation:</strong> Rigorous structured data implementation with <code>JSON-LD Schema (Organization, Services)</code>, automated XML sitemaps, and OpenGraph metadata.</li>
+                                <li><strong>Automated Netlify CI/CD:</strong> Git-triggered build pipelines distributed across worldwide CDN edge servers for global reliability.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            vi: {
+                project1: {
+                    tag: "KIẾN TRÚC DOANH NGHIỆP HUYHOANGJSC",
+                    title: "Huyhoangjsc Enterprise Platform (HRM & Real-time Chat)",
+                    visualKey: "project1",
+                    imageCaption: "Hệ thống Quản trị Doanh nghiệp Trực tiếp Huyhoangjsc",
+                    content: `
+                        <p><strong>Nghiệp vụ & Bối cảnh:</strong> Hệ sinh thái giải pháp số hóa quản trị cho <a href="https://home.huyhoangjsc.com" target="_blank" rel="noopener noreferrer" class="text-white underline">Huyhoangjsc</a>. Nền tảng phân tách thành hai phân hệ chuyên biệt để đáp ứng đồng thời 2 bài toán tải ngược nhau: một bên cần xử lý dữ liệu nặng và tính toán phức tạp (HRM), một bên đòi hỏi độ trễ cực thấp (Chat).</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">1. Phân hệ Quản trị Nhân sự (HRM Module)</div>
+                            <p class="text-xs text-neutral-300 leading-relaxed">
+                                Xử lý các nghiệp vụ tính công, chấm ca, chốt lương và kết xuất báo cáo tổng hợp. Toàn bộ logic nặng được đẩy vào hàng đợi <code>BullMQ + Redis</code> để thực thi ngầm qua Worker, trả quyền phản hồi lập tức cho giao diện người dùng. Dữ liệu bảng lương và hợp đồng được lưu trữ nghiêm ngặt trong <code>PostgreSQL</code> với chuẩn ACID.
+                            </p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">2. Phân hệ Trò chuyện Thời gian thực (Chat Module)</div>
+                            <p class="text-xs text-neutral-300 leading-relaxed">
+                                Cung cấp kết nối <code>WebSocket</code> hai chiều cho phép nhân viên trao đổi tin nhắn phòng ban tức thì, đồng bộ trạng thái trực tuyến. Lưu trữ lược đồ tin nhắn, hội thoại dạng tài liệu động trong <code>MongoDB</code> nhằm tối ưu hóa tốc độ ghi/đọc theo chuỗi thời gian.
+                            </p>
+                        </div>
+                        <p class="text-xs text-neutral-400">
+                            <strong>Tài nguyên & Media:</strong> Toàn bộ hợp đồng số hóa (HRM) và hình ảnh, file đính kèm trong hội thoại (Chat) được truyền tải trực tiếp qua <code>AWS S3 Pre-signed URLs</code>, loại bỏ hoàn toàn tải trung chuyển qua máy chủ backend.
+                        </p>
+                    `
+                },
+                project2: {
+                    tag: "FINTECH & TÍCH HỢP HỆ THỐNG DI ĐỘNG",
+                    title: "MoneyMate — Theo dõi biến động số dư ngân hàng qua thông báo hệ điều hành",
+                    visualKey: "project2",
+                    imageCaption: "Giao diện MoneyMate và Ứng dụng Android Companion Hoạt động Thực tế",
+                    content: `
+                        <p><strong>Bối cảnh & Vấn đề giải quyết:</strong> Các ứng dụng quản lý tài chính cá nhân thường thất bại vì người dùng lười nhập tay thủ công. MoneyMate tự động hóa 100% dòng tiền bằng cách thu thập biến động số dư theo thời gian thực trực tiếp từ hệ thống thông báo của Android. Cổng giới thiệu & triển khai: <a href="https://moneymate.hostless.site/about" target="_blank" rel="noopener noreferrer" class="text-white underline">moneymate.hostless.site/about</a>.</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">Kỹ thuật Cốt lõi & Tính năng độc đáo:</div>
+                            <ul class="list-disc list-inside space-y-1.5 text-xs text-neutral-300">
+                                <li><strong>Android Native Background Daemon:</strong> Sử dụng <code>NotificationListenerService</code> chạy thường trực 24/7 (kháng Doze mode) để đón nhận thông báo từ các ứng dụng ngân hàng tại Việt Nam (VCB, TCB, MB, ACB, ShopeePay...).</li>
+                                <li><strong>Offline Regex Engine:</strong> Thuật toán bóc tách cú pháp tin nhắn ngay tại thiết bị để lấy: số tiền (+/-), thời gian, tài khoản nguồn và nội dung giao dịch nhằm bảo vệ quyền riêng tư người dùng.</li>
+                                <li><strong>Spring Boot & PostgreSQL Backend:</strong> API bảo mật xử lý giao dịch kép, chống ghi trùng (idempotency key), hỗ trợ báo cáo phân loại danh mục tự động.</li>
+                                <li><strong>React Dashboard:</strong> Giao diện tổng quan Net Worth, biểu đồ thu chi và danh sách biến động trực quan.</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                project3: {
+                    tag: "BÀN GIAO SẢN PHẨM HIỆU NĂNG CAO",
+                    title: "Viphenix Global Technical Solutions — Cổng thông tin Quốc tế Tốc độ cao",
+                    visualKey: "project3",
+                    imageCaption: "Giao diện Cổng thông tin Quốc tế Viphenix Global Technical Solutions",
+                    content: `
+                        <p><strong>Nghiệp vụ & Bối cảnh:</strong> Cổng thông tin đại diện chính thức cho <a href="https://viphenix-tech.com" target="_blank" rel="noopener noreferrer" class="text-white underline">Viphenix Global Technical Solutions Ltd. (viphenix-tech.com)</a> — đơn vị tư vấn kỹ thuật năng lượng (khí hóa sinh khối, tối ưu hóa phát thải CO₂) và xúc tiến thương mại quốc tế (China - Qatar, Italy - Vietnam, England - Vietnam).</p>
+                        <div class="p-3 rounded-lg bg-surfaceMuted border border-surfaceBorder space-y-2">
+                            <div class="text-xs font-mono text-white font-semibold">Điểm nhấn Kiến trúc & Hiệu năng:</div>
+                            <ul class="list-disc list-inside space-y-1.5 text-xs text-neutral-300">
+                                <li><strong>Static Engine với Astro:</strong> Lựa chọn kiến trúc tĩnh giúp tối thiểu dung lượng JavaScript gửi tới trình duyệt, đạt điểm Core Web Vitals tuyệt đối và thời gian phản hồi First Contentful Paint < 0.4s.</li>
+                                <li><strong>i18n Tối giản:</strong> Cơ chế đa ngôn ngữ chạy mượt bằng JavaScript thuần (Vanilla JS), không gây phình dung lượng bundle (zero heavy framework overhead).</li>
+                                <li><strong>Technical SEO Hoàn chỉnh:</strong> Cấu hình đầy đủ lược đồ ngữ nghĩa <code>JSON-LD Schema (Organization, Service)</code>, thẻ canonical, sitemap.xml tự động cập nhật giúp tối ưu thứ hạng hiển thị đối tác trên Google.</li>
+                                <li><strong>Netlify CI/CD:</strong> Tự động hóa kiểm thử và phát hành trang qua quy trình build Netlify, tận dụng mạng lưới CDN toàn cầu phục vụ khách hàng đa quốc gia.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            }
+        };
+
+        function openModal(id) {
+            const data = projectModalContent[currentLang][id] || projectModalContent['en'][id];
+            if (!data) return;
+
+            document.getElementById('modal-tag').innerText = data.tag;
+            document.getElementById('modal-title').innerText = data.title;
+            
+            // Render high-fidelity visual preview
+            const visualHtml = projectVisuals[data.visualKey] || '';
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="space-y-2">
+                    ${visualHtml}
+                    ${data.imageCaption ? `<div class="p-2 text-[11px] font-mono text-neutral-400 bg-surfaceMuted/60 border border-surfaceBorder rounded-lg text-center flex items-center justify-center gap-1.5"><i data-lucide="eye" class="w-3.5 h-3.5"></i> ${data.imageCaption}</div>` : ''}
+                </div>
+                <div class="space-y-4 pt-2">${data.content}</div>
+            `;
+            
+            // Reinitialize lucide icons for newly inserted modal content
+            lucide.createIcons();
+
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            const imageModal = document.getElementById('image-modal');
+            if (!imageModal || imageModal.classList.contains('hidden')) {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Image Lightbox Modal Logic
+        function openImageModal(src, caption) {
+            const imageModal = document.getElementById('image-modal');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            if (!imageModal || !img) return;
+
+            img.src = src;
+            img.alt = caption || 'Project Screenshot';
+            if (cap) cap.innerText = caption || '';
+
+            imageModal.classList.remove('hidden');
+            imageModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeImageModal() {
+            const imageModal = document.getElementById('image-modal');
+            if (!imageModal) return;
+            imageModal.classList.add('hidden');
+            imageModal.classList.remove('flex');
+            
+            // Only restore body scroll if details modal is not open
+            const projectModal = document.getElementById('modal');
+            if (!projectModal || projectModal.classList.contains('hidden')) {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Contact form: Asynchronous delivery to tranhuutri2311@gmail.com
+        async function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const feedback = document.getElementById('form-feedback');
+            const name = document.getElementById('sender-name').value;
+            const email = document.getElementById('sender-email').value;
+            const message = document.getElementById('sender-message').value;
+
+            btn.disabled = true;
+            btn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> ${currentLang === 'vi' ? 'Đang gửi...' : 'Sending...'}`;
+
+            try {
+                // Free endpoint forwarding directly to tranhuutri2311@gmail.com without needing a backend
+                const response = await fetch("https://formsubmit.co/ajax/tranhuutri2311@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _subject: `New Portfolio Message from ${name}`
+                    })
+                });
+
+                if (response.ok) {
+                    btn.innerHTML = `<span>✓ ${currentLang === 'vi' ? 'Đã gửi thành công' : 'Sent Successfully'}</span>`;
+                    feedback.innerText = currentLang === 'vi' 
+                        ? "Tin nhắn đã gửi trực tiếp đến tranhuutri2311@gmail.com! Tôi sẽ phản hồi sớm."
+                        : "Message sent directly to tranhuutri2311@gmail.com! I will reply shortly.";
+                    feedback.classList.remove('hidden');
+                    e.target.reset();
+                } else {
+                    throw new Error('API returned error');
+                }
+            } catch (err) {
+                // Fallback: Open default email client with prepopulated body
+                btn.disabled = false;
+                btn.innerHTML = `<span>${currentLang === 'vi' ? 'Gửi Tin nhắn' : 'Send Message'}</span>`;
+                window.location.href = `mailto:tranhuutri2311@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nFrom: " + email)}`;
+            }
+        }
+
+        // Close modal on escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const imageModal = document.getElementById('image-modal');
+                if (imageModal && !imageModal.classList.contains('hidden')) {
+                    closeImageModal();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
