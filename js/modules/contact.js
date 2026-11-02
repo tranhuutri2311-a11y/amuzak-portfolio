@@ -69,12 +69,16 @@
      */
     function copyEmail() {
         const currentLang = window.getCurrentLang ? window.getCurrentLang() : (window.currentLang || 'en');
-        const tempInput = document.createElement("input");
-        tempInput.value = RECIPIENT_EMAIL;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
+        try {
+            navigator.clipboard.writeText(RECIPIENT_EMAIL);
+        } catch (err) {
+            const tempInput = document.createElement("input");
+            tempInput.value = RECIPIENT_EMAIL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
 
         const copyText = document.getElementById("copy-text");
         if (copyText) {
@@ -85,9 +89,49 @@
         }
     }
 
+    /**
+     * Direct Email Action (copies to clipboard and opens web compose/client)
+     */
+    function openDirectEmail(e) {
+        if (e) e.preventDefault();
+        const currentLang = window.getCurrentLang ? window.getCurrentLang() : (window.currentLang || 'en');
+
+        // 1. Copy to clipboard
+        try {
+            navigator.clipboard.writeText(RECIPIENT_EMAIL);
+        } catch (err) {
+            const tempInput = document.createElement("input");
+            tempInput.value = RECIPIENT_EMAIL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
+
+        // 2. Show tooltip on email button
+        const tip = document.getElementById("email-tooltip");
+        if (tip) {
+            tip.innerText = currentLang === 'vi' ? "Đã chép: tranhuutri2311@gmail.com" : "Copied: tranhuutri2311@gmail.com";
+            tip.classList.remove("opacity-0", "pointer-events-none");
+            tip.classList.add("opacity-100");
+            setTimeout(() => {
+                tip.classList.add("opacity-0", "pointer-events-none");
+                tip.classList.remove("opacity-100");
+            }, 3000);
+        }
+
+        // 3. Open Gmail in web compose, with fallback to mailto
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=Portfolio%20Inquiry`;
+        const win = window.open(gmailUrl, "_blank");
+        if (!win || win.closed || typeof win.closed === 'undefined') {
+            window.location.href = `mailto:${RECIPIENT_EMAIL}`;
+        }
+    }
+
     function initContact() {}
 
     window.handleContactSubmit = handleContactSubmit;
     window.copyEmail = copyEmail;
+    window.openDirectEmail = openDirectEmail;
     window.initContact = initContact;
 })();
