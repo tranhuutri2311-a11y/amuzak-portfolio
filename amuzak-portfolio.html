@@ -1277,22 +1277,26 @@
             btn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> ${currentLang === 'vi' ? 'Đang gửi...' : 'Sending...'}`;
 
             try {
-                // Free endpoint forwarding directly to tranhuutri2311@gmail.com without needing a backend
-                const response = await fetch("https://formsubmit.co/ajax/tranhuutri2311@gmail.com", {
+                // Web3Forms API endpoint delivering directly to your inbox
+                const response = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     headers: { 
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
+                        access_key: "6452d4cb-1614-4d71-a975-1c8ec7400538",
                         name: name,
                         email: email,
                         message: message,
-                        _subject: `New Portfolio Message from ${name}`
+                        subject: `New Portfolio Message from ${name}`,
+                        from_name: "Portfolio Contact Form"
                     })
                 });
 
-                if (response.ok) {
+                const result = await response.json();
+
+                if (response.ok && result.success) {
                     btn.innerHTML = `<span>✓ ${currentLang === 'vi' ? 'Đã gửi thành công' : 'Sent Successfully'}</span>`;
                     feedback.innerText = currentLang === 'vi' 
                         ? "Tin nhắn đã gửi trực tiếp đến tranhuutri2311@gmail.com! Tôi sẽ phản hồi sớm."
@@ -1300,7 +1304,7 @@
                     feedback.classList.remove('hidden');
                     e.target.reset();
                 } else {
-                    throw new Error('API returned error');
+                    throw new Error(result.message || 'API returned error');
                 }
             } catch (err) {
                 // Fallback: Open default email client with prepopulated body
